@@ -7,8 +7,8 @@ The code works by running <i> Main.R </i>. The user only needs to provide an inp
 The input dataset contains the target variable and a set of potential regressors. It should be located in the folder ‘1-Inputs’. An example input dataset with randomly generated series is provided to give a broad idea of the required data structure. The input dataset should: 
 - include a variable named 'target' (= world CPB trade in Chinn et al., 2023). NB: Please do NOT include lags of 'target' (two lags are created automatically in the code).
 - include a variable named 'date' which must:
-- be at monthly frequency (other frequencies can be supported with a slight adaptation of the code)
-- be encoded in the format YYYY-MM-15 (NB: please put 15 as day of the month)
+  - be at monthly frequency (other frequencies can be supported with a slight adaptation of the code)
+  - be encoded in the format YYYY-MM-15 (NB: please put 15 as day of the month)
 - have variables already transformed (no transformation is performed in the code)
 
 Different sorts of input variables are supported including:
@@ -29,11 +29,11 @@ Settings of the three-step approach should be entered directly in <i> Main.R </i
 Outputs are created in the folder '2-Output' with sub-folders by forecast horizons (e.g. folder 'h0' for a nowcast).
 Three types of Excel outputs are provided for each run of <i> Main.R </i>. The type of output is indicated by the name:
 - 'pred' = out-of-sample predictions at each point in time. Columns are:
-- 'date' = date of the actual data (NOT the date of the forecast)
-- 'true_value' = actual data
-- one column for each regression technique
+  - 'date' = date of the actual data (NOT the date of the forecast)
+  - 'true_value' = actual data
+  - one column for each regression technique
 - 'rmse' = out-of-sample RMSE, separated between crisis (2008-2009 and 2020-2021) and non-crisis (other years)
 - 'summaryALL' = summary of out-of-sample RMSE. The structure is: 
-- second row corresponds to the pre-selection technique used
-- Third row corresponds to the number of variables kept after pre-selection
-- each row (>3) corresponds to a regression technique. Values indicate the out-of-sample RMSE.
+  - second row corresponds to the pre-selection technique used
+  - Third row corresponds to the number of variables kept after pre-selection
+  - each row (>3) corresponds to a regression technique. Values indicate the out-of-sample RMSE
