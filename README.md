@@ -1,5 +1,6 @@
 # Description
-The code is a user-friendly version of the code used in Chinn et al. (2023), allowing to forecast using the three-step approach. Please note this is a <b> simplified </b> version. For more details over the three-step approach and the possible methods at each step, please refer to Chinn, M. D., Meunier, B., Stumpner, S. (2023). "Nowcasting World Trade with Machine Learning: a Three-Step Approach", NBER Working Paper, No 31419, National Bureau of Economic Research
+The code is a user-friendly version of the code used in Chinn et al. (2023), allowing to forecast using the three-step approach. Please note this is a <b> simplified </b> version. 
+For more details over the three-step approach and the possible methods at each step, please refer to Chinn, M. D., Meunier, B., Stumpner, S. (2023). "Nowcasting World Trade with Machine Learning: a Three-Step Approach", NBER Working Paper, No 31419, National Bureau of Economic Research
 
 # How to run the code?
 The code works by running <i> Main.R </i>. The user only needs to provide an input dataset and to select the settings (methods, periods, horizons) of the three-step approach.
@@ -46,7 +47,8 @@ Besides the type of output, the name of the Excel indicates the settings of the 
 - '_reg_zzz_' = zzz relates to the regression technique(s) used
 - '_h_aaa_' = aaa relates to the horizon of forecast
 - last items in the name of the Excel refer to start and end dates of the out-of-sample forecasts
-Examples of output are provided in the folder ‘2-Output’.
+
+Examples of output Excel are provided in the folder ‘2-Output’.
 
 # How to cite the code?
 Please cite as Chinn, M. D., Meunier, B., Stumpner, S. (2023). "Nowcasting World Trade with Machine Learning: a Three-Step Approach", NBER Working Paper, No 31419, National Bureau of Economic Research 
