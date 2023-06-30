@@ -37,3 +37,24 @@ Three types of Excel outputs are provided for each run of <i> Main.R </i>. The t
   - second row corresponds to the pre-selection technique used
   - Third row corresponds to the number of variables kept after pre-selection
   - each row (>3) corresponds to a regression technique. Values indicate the out-of-sample RMSE
+ 
+ <b> NB: </b> Each run of <i> Main.R </i> creates one ‘pred’ Excel and one ‘rmse’ Excel for each pre-selection technique tested. It also creates different Excels for each number of variables kept. For example, if the user tests LARS and SIS with 50 and 60 variables kept, four different ‘pred’ and four different ‘rmse’ Excels will be created (LARS-50, LARS-60, SIS-50, SIS-60). By contrast, only a single 'summaryALL' Excel is created at each run of <i> Main.R </i>.
+
+Besides the type of output, the name of the Excel indicates the settings of the three-step approach:
+- '_sel_xxx_' = xxx relates to the pre-selection technique(s) used 
+- '_n_yyy_' = yyy relates to the number of variables kept after pre-selection 
+- '_reg_zzz_' = zzz relates to the regression technique(s) used
+- '_h_aaa_' = aaa relates to the horizon of forecast
+- last items in the name of the Excel refer to start and end dates of the out-of-sample forecasts
+Examples of output are provided in the folder ‘2-Output’.
+
+# How to cite the code?
+Please cite as Chinn, M. D., Meunier, B., Stumpner, S. (2023). "Nowcasting World Trade with Machine Learning: a Three-Step Approach", NBER Working Paper, No 31419, National Bureau of Economic Research 
+
+Where appropriate, please also cite
+- Macroeconomic random forest as: Goulet-Coulombe, P. (2020). “The Macroeconomy as a Random Forest”, arXiv pre-print
+- Linear gradient boosting as: Chen, T., and Guestrin, C. (2016). “XGBoost: A Scalable Tree Boosting System”, in Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, pp. 785–794
+- Least Angle Regression (LARS) as: Efron, B., Hastie, T., Johnstone, I., and Tibshirani, R. (2004). “Least angle regression”, Annals of Statistics, 32(2), pp. 407–499
+- Sure Independence Screening (SIS) as: Fan, J., and Lv, J. (2008). “Sure independence screening for ultrahigh dimensional feature space”, Journal of the Royal Statistical Society Series B, 70(5), pp. 849–911
+- T-stat-based pre-selection as: Bair, E., Hastie, T., Paul, D., and Tibshirani, R. (2006). “Prediction by supervised principal components”, Journal of the American Statistical Association, 101(473), pp. 119–137
+- Iterated Bayesian Model Averaging as: Yeung, K., Bumgarner, R., and Raftery, A. (2005). “Bayesian Model Averaging: Development of an improved multi-class, gene selection and classification tool for microarray data”, Bioinformatics, 21(10), pp. 2394–2402
