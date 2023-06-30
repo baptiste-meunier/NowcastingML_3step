@@ -1,5 +1,6 @@
 # Description
 The code is a user-friendly version of the code used in Chinn et al. (2023), allowing to forecast using the three-step approach. Please note this is a <b> simplified </b> version. 
+
 For more details over the three-step approach and the possible methods at each step, please refer to Chinn, M. D., Meunier, B., Stumpner, S. (2023). "Nowcasting World Trade with Machine Learning: a Three-Step Approach", NBER Working Paper, No 31419, National Bureau of Economic Research
 
 # How to run the code?
