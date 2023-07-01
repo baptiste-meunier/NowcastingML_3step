@@ -51,7 +51,7 @@ Besides the type of output, the name of the Excel indicates the settings of the 
 
 Examples of output Excel are provided in the folder ‘2-Output’.
 
-# Questions and references
+# Contact and references
 Please report any bug and address any question to <a href="mailto:baptistemeunier@hotmail.fr?subject=Question on 3-step approach">baptistemeunier@hotmail.fr</a>.
 
 Please cite as Chinn, M. D., Meunier, B., Stumpner, S. (2023). "Nowcasting World Trade with Machine Learning: a Three-Step Approach", NBER Working Paper, No 31419, National Bureau of Economic Research 
