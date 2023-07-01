@@ -40,7 +40,7 @@ Three types of Excel outputs are provided for each run of <i> Main.R </i>. The t
   - Third row corresponds to the number of variables kept after pre-selection
   - each row (>3) corresponds to a regression technique. Values indicate the out-of-sample RMSE
  
- <b> NB: </b> Each run of <i> Main.R </i> creates one ‘pred’ Excel and one ‘rmse’ Excel for each pre-selection technique tested. It also creates different Excels for each number of variables kept. For example, if the user tests LARS and SIS with 50 and 60 variables kept, four different ‘pred’ and four different ‘rmse’ Excels will be created (LARS-50, LARS-60, SIS-50, SIS-60). By contrast, only a single 'summaryALL' Excel is created at each run of <i> Main.R </i>.
+ <b> NB: </b> Per horizon, each run of <i> Main.R </i> creates one ‘pred’ Excel and one ‘rmse’ Excel for each pre-selection technique tested. It also creates different Excels for each number of variables kept. For example, if the user tests LARS and SIS with 50 and 60 variables kept, four different ‘pred’ and four different ‘rmse’ Excels will be created (LARS-50, LARS-60, SIS-50, SIS-60). By contrast, only a single 'summaryALL' Excel per horizon is created at each run of <i> Main.R </i>.
 
 Besides the type of output, the name of the Excel indicates the settings of the three-step approach:
 - '_sel_xxx_' = xxx relates to the pre-selection technique(s) used 
