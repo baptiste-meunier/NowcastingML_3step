@@ -52,9 +52,10 @@ tune_RF <- function(x,y,n){
     
   m_min <- floor(ncol(x)/3)
   m_max <- ncol(x)
+  m_step <- floor((m_max-m_min)/4)
   
-  for (m_try in m_min:m_max){
-    for (nd_size in 3:12){
+  for (m_try in seq(m_min,m_max,by=m_step)){
+    for (nd_size in seq(3,12,by=3)){
       
       # Define train and test samples
       x_tr <- x[1:n_test-1,]
