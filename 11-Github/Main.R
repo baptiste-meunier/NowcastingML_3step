@@ -107,7 +107,7 @@ end_date_oos <- "2022-04-15"            # End date for OOS predictions
 
 # User parameters - part 2
 # Combinations for three-step approach
-list_h <- c(-3,-2)                      # List of horizons for back-, now- or fore-cast takes place
+list_h <- c(-2,-1)                      # List of horizons for back-, now- or fore-cast takes place
                                         # Negative for a back-cast, 0 for a now-cast and positive for a fore-cast
                                         # Selecting only one value is possible
 list_methods <- c(1,2)                  # List of pre-selection methods
@@ -118,7 +118,7 @@ list_methods <- c(1,2)                  # List of pre-selection methods
                                         # 4 = Iterated Bayesian Model Averaging (BMA: Yeung et al., 2005)
                                         # Selecting only one value is possible
 list_n <- c(40,60)                      # List of number of variables kept after pre-selection
-list_reg <- c(1,4)                      # List of regressions techniques
+list_reg <- c(1,7)                      # List of regressions techniques
                                         # The AR benchmark is always performed - regardless of selection
                                         # 1 = OLS
                                         # 2 = Markov-switching regression [requires 1]
@@ -204,18 +204,19 @@ for (hh in 1:length(list_h)){
   
   # Get re-aligned dataset
   data_real <- doAlign(data_rmv,horizon)
+  
+  # Initializing the output
+  summary_ps_meth <- data.frame(NA)
 
   # Loop over user-defined methods
   for (mm in 1:length(list_methods)){
     
     # Initializing the output of the results comparison exercise
     select_method = as.numeric(list_methods[mm])
-    summary_ps_meth <- data.frame(NA)
-    summary_ps_meth[1,1] <- select_method
 
     # Loop over user-defined number of variables
     for (nn in 1:length(list_n)){
-
+      
       # Get values of the test
       n_var = as.numeric(list_n[nn])
       
@@ -386,7 +387,8 @@ for (hh in 1:length(list_h)){
                                               start_date_oos,
                                               "_",
                                               end_date_oos,
-                                              ".csv"))
+                                              ".csv"),
+                row.names=FALSE)
       
       # Summarizing and writing aggregate results
       err <- function(X,Y){sqrt(sum((X-Y)^2)/length(Y))}
@@ -408,8 +410,8 @@ for (hh in 1:length(list_h)){
       normal <- apply(normal,2,err,Y=normal[,1])
       
       summary_all <- cbind(cbind(total,crisis),normal) %>%
-        as.data.frame() %>%
-        filter(rownames!='true_value')
+        as.data.frame()
+      summary_all <- summary_all[!(row.names(summary_all) %in% c('true_value')),]
       
       # Writing results
       # Results are written for RMSE on crisis sample (2008-2009 and 2020-2021) and non-crisis sample
@@ -429,28 +431,36 @@ for (hh in 1:length(list_h)){
                                            end_date_oos,
                                            ".csv"))
       
-      # Add results to the total
-      summary_ps_meth[2,nn+1] <- n_var
-      summary_ps_meth[3:(nrow(summary_all)+2),nn+1] <- summary_all$total
+      # Write results to the summary
+      tot_meth <- length(list_methods)
+      num_col <- 1+(mm-1)*tot_meth+nn
+      summary_ps_meth[1,num_col] <- select_method
+      summary_ps_meth[2,num_col] <- n_var
+      summary_ps_meth[3:(nrow(summary_all)+2),num_col] <- summary_all$total
       summary_ps_meth[3:(nrow(summary_all)+2),1] <- rownames(summary_all)
       
-    }
-
-    # Write results
-    # This is a summary of all the tested methods
-    write.csv(summary_ps_meth, file = paste0("./2-Output/",
-                                             paste0("h",horizon,"/"),
-                                             "summary_sel_",
-                                             select_method,
-                                             "_reg_",
-                                             paste(list_reg, collapse='_'),
-                                             "_h_",
-                                             horizon,
-                                             "_",
-                                             start_date_oos,
-                                             "_",
-                                             end_date_oos,
-                                             ".csv"))
-    
-  }
-}
+    } # End of loop on number of variables
+  } # End of loop on pre-selection method
+  
+  # Write results
+  # This is a summary of all the tested methods
+  summary_ps_meth[1,1] <- "pre-selection"
+  summary_ps_meth[2,1] <- "nb variables"
+  write.csv(summary_ps_meth, file = paste0("./2-Output/",
+                                           paste0("h",horizon,"/"),
+                                           "summaryALL_sel_",
+                                           paste(list_methods,collapse='_'),
+                                           "_n_",
+                                           paste(list_n,collapse='_'),
+                                           "_reg_",
+                                           paste(list_reg, collapse='_'),
+                                           "_h_",
+                                           horizon,
+                                           "_",
+                                           start_date_oos,
+                                           "_",
+                                           end_date_oos,
+                                           ".csv"),
+            row.names=FALSE)
+  
+} # End of loop on horizon
