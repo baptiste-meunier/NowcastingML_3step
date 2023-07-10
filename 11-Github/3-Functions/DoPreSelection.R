@@ -51,8 +51,9 @@ pre_select <- function(data_real,ii,horizon,select_method,n_var){
                                  method  = "pearson"))) %>%
       select(-target) %>%
       distinct() %>%
-      reshape2::melt(variable.name = "variable",
-                     value.name = "corr")
+      t() %>%
+      as.data.frame() %>%
+      rename(corr=V1)
     
     out_sel <- order %>%
       mutate(corr = abs(corr)) %>%
